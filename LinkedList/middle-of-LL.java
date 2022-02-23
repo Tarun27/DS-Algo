@@ -40,21 +40,14 @@ class Solution {
         
         /* solution 2
         
-            ListNode fast=head;
+        ListNode fast=head;
         ListNode slow=head;
         
-              if(head==null||head.next==null){
-            return head;
-        }
-        
+
         while(fast!=null&&fast.next!=null){
             slow=slow.next;
-            fast=fast.next;
-            
-            if(fast!=null){
-                fast=fast.next;
-            }
-            
+            fast=fast.next.next;
+
         }
         
         return slow;
