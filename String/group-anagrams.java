@@ -8,8 +8,15 @@ class Solution {
         
         for(String s: strs){
             
-            char[] arr = s.toCharArray();
-            Arrays.sort(arr);
+            // char[] arr = s.toCharArray();
+            // Arrays.sort(arr); 
+            
+            //sorting alternative
+             
+           char[] arr = new char[26];
+            for(int i = 0;i<s.length();i++){
+                arr[s.charAt(i) - 'a']++;
+            }
             String key = String.valueOf(arr);
                 
             if(!mp.containsKey(key)){
