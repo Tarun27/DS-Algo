@@ -1,5 +1,3 @@
-//https://leetcode.com/problems/binary-tree-level-order-traversal-ii/
-
 /**
  * Definition for a binary tree node.
  * public class TreeNode {
@@ -18,9 +16,42 @@
 class Solution {
     public List<List<Integer>> levelOrderBottom(TreeNode root) {
         
+        public List<List<Integer>> levelOrderBottom(TreeNode root) {
+        
+         List<List<Integer>> list = new LinkedList();
+        if(root==null){
+            return list;
+         }
+        
+        levelHelper(root,list,0);
+        
+        return list;
+    }
+    
+    
+    public void levelHelper(TreeNode node,List<List<Integer>> list, int lvl){
+        
+        if(list.size()==lvl){    
+            list.add(0,new LinkedList<Integer>());
+        }
+        
+      
+        
+        if(node.left!=null){
+            levelHelper(node.left,list,lvl+1);
+        }
+        if(node.right!=null){
+            levelHelper(node.right,list,lvl+1);
+        }
+        
+          list.get(list.size()-lvl-1).add(node.val);
+        
+    }
+    
+   
+        /* solution-2/DFS
         List<List<Integer>> list = new LinkedList();
         Queue<TreeNode> q = new LinkedList<TreeNode>();
-        Stack<List<Integer>> stk = new Stack();
         
         if(root==null){
             return list;
@@ -45,12 +76,10 @@ class Solution {
             q.poll();
             len--;
             }
-                stk.push(subList);    
+                list.add(0,subList);   
         }
     
-        while(!stk.isEmpty()){
-            list.add(stk.pop());
-        }
         return list;
+        */
     }
 }
