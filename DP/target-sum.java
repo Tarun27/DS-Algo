@@ -1,6 +1,48 @@
 //https://leetcode.com/problems/target-sum/
 
 
+/*
+bottom up knapsack
+ p-> +ve numbers
+ N-> negative numbers
+                 sum(P) - sum(N) = target
+sum(P) + sum(N) + sum(P) - sum(N) = target + sum(P) + sum(N)
+                       2 * sum(P) = target + sum(nums)
+*/
+class Solution {
+
+    public int findTargetSumWays(int[] nums, int target) {
+        int total = Arrays.stream(nums).sum();
+        
+        if((total+target)%2!=0||target>total||target<-total){
+           return 0; 
+        }
+    
+       int newTarget = (total+target)>>>1;
+        
+        int[] memo = new int[newTarget+1];
+        
+        memo[0]=1;
+        
+    //    System.out.println(newTarget);
+        
+        for(int i: nums){
+        
+            for(int j=memo.length-1;j>=i;j--){
+            
+                memo[j]+=memo[j-i] ;
+            
+            }
+        
+        }
+        
+        
+        return memo[newTarget];
+       
+    }
+    
+
+}
 
 
 //memo + recursion
