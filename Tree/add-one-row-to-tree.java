@@ -85,3 +85,42 @@ class Solution {
         return root;
     }
 }
+
+//recursive
+
+/*
+class Solution {
+    public TreeNode addOneRow(TreeNode root, int val, int depth) {
+          if(depth==1){
+            TreeNode node= new TreeNode(val,root,null);
+            return node;
+        }
+        addRow(root,val,depth,1);
+          
+        return root;
+    }
+    
+    public void addRow(TreeNode curr, int val,int depth, int lvl){
+
+        if(curr==null){
+            return;
+        }
+        
+        if(depth==lvl+1){
+            
+         TreeNode   lft = curr.left;
+         TreeNode   rt=curr.right;
+            
+            curr.left=new TreeNode(val,lft,null);
+            curr.right=new TreeNode(val,null,rt);
+            return ;
+        }
+        
+        addRow(curr.left,val,depth,lvl+1);
+        addRow(curr.right,val,depth,lvl+1);
+    }
+    
+    
+    
+}
+*/
