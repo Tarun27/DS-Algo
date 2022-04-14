@@ -36,4 +36,26 @@ class Solution {
         return root;
         
     }
+    
+    /*
+    class Solution {
+    public TreeNode insertIntoBST(TreeNode root, int val) {
+        if (root == null) return new TreeNode(val);
+        TreeNode curr = root;
+        TreeNode pre = null;
+        while (curr != null) {
+            pre = curr;
+            if (val > curr.val) curr = curr.right;
+            else curr = curr.left;
+        }
+        if (val > pre.val) {
+            pre.right = new TreeNode(val);
+        } else {
+            pre.left = new TreeNode(val);
+        }
+        return root;
+    }
+}
+    */
+    
 }
