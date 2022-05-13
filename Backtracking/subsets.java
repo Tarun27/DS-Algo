@@ -28,6 +28,19 @@ class Solution {
         dfs(list,subList,nums,i+1);     
         
     }
+    
+        public void dfs2( List<List<Integer>> list,List<Integer> subList, int[] nums, int idx){      
+
+            list.add(new ArrayList(subList));
+        
+        for( int i=idx;i<nums.length;i++){
+            
+            subList.add(nums[i]);
+              dfs2(list,subList,nums,i+1);
+                subList.remove(subList.size()-1);
+        }
+        
+    }
 }
 
 /* iterative
