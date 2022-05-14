@@ -1,71 +1,40 @@
 //https://leetcode.com/problems/coin-change-2/
-
 class Solution {
-    public int change(int amount, int[] coins) {
+    public int change(int target, int[] nums) {
         
-        if(amount==0){
-            return 1;
+          int n = nums.length;
+        int[][] memo= new int[n+1][target+1];
+        
+        for(int i=1;i<=n;i++){
+            memo[i][0]=1;
         }
         
-        int memo[]=new int[amount+1];
-        
-        for(int i =1;i<=coins.length;i++){
-            for(int j=1;j<amount+1;j++){
-                
-                if(j>=coins[i-1]){
-                    int rem=j-coins[i-1];
-                    if(rem!=0){
-                        memo[j]+=memo[rem];
-                    }else{
-                        memo[j]+=1;
-                    }    
-                }
-                
-            }
-                
-            }
-            return memo[amount];
-        }
-    
-
-        
-    }
-
-// using 2d memo - bottom up
-
-/*class Solution {
-    public int change(int amount, int[] coins) {
-        
-        if(amount==0){
-            return 1;
-        }
-        
-        int memo[][]=new int[coins.length+1][amount+1];
-        
-        for(int i =1;i<=coins.length;i++){
-            for(int j=1;j<amount+1;j++){
-                
-                if(j>=coins[i-1]){
-                    int rem=j-coins[i-1];
-                    if(rem!=0){
-                        memo[i][j]=memo[i][rem]+memo[i-1][j];
-                    }else{
-                        memo[i][j]=1+memo[i-1][j];
-                    }    
+        for(int i=1;i<=n;i++){
+            for(int j=1;j<=target;j++){
+                if(nums[i-1]<=j){
+                    memo[i][j]= memo[i-1][j]+memo[i][j-nums[i-1]];
                 }else{
                     memo[i][j]=memo[i-1][j];
                 }
-                
             }
-                
-            }
-            return memo[coins.length][amount];
         }
-    
+        
+        // for(int i=0;i<=n;i++){
+        //     System.out.println();
+        //     for(int j=0;j<=target;j++){
+        //         System.out.print(memo[i][j]+" ");
+        //     }
+        // }
+        
+        return memo[n][target];
+
 
         
     }
-*/
+    
+}
+
+
 
 //recursive
 /*
