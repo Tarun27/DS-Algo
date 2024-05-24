@@ -23,12 +23,13 @@ class Solution {
                 i--;
                 numbers.push(count);
             } else if (c == '[') {
-                System.out.println(" .  .   "+decoded.toString());
+           //     System.out.println(" .  .   "+decoded.toString());
 
                 if (decoded.length() > 0) {
                     stack.push(decoded.toString());
                     decoded.setLength(0);
                 }else{
+                    // scenario where there is no string to be decoded, just a multiple number for ex: "3[z]2[2[y]pq4[2[jk]e1[f]]]ef" or "3[z]2[2[y]]"
                     stack.push("[");
                 }
 
@@ -43,7 +44,7 @@ class Solution {
 
                 if (!stack.isEmpty()) {
                     String str2 = stack.pop();
-                    if(!str2.equals("["))
+                    if(!str2.equals("["))  // scenario where there is no string to be decoded, just a multiple number for ex: "3[z]2[2[y]pq4[2[jk]e1[f]]]ef"
                     decoded.insert(0, str2);
                 }
             } else {
