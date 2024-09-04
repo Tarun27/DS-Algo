@@ -46,3 +46,36 @@ public class BalancedParentheses {
         }
     }
 }
+
+
+
+
+
+// memoryEfficient version
+
+// current = new StringBuilder();
+
+    private static void generateParenthesesHelper(List<String> result, StringBuilder current, int open, int close, int max) {
+        if (current.length() == max * 2) {
+            result.add(current.toString());
+            return;
+        }
+
+        if (open < max) {
+            current.append('(');
+            generateParenthesesHelper(result, current, open + 1, close, max);
+            current.deleteCharAt(current.length() - 1); // Backtrack
+        }
+        if (close < open) {
+            current.append(')');
+            generateParenthesesHelper(result, current, open, close + 1, max);
+            current.deleteCharAt(current.length() - 1); // Backtrack
+        }
+    }
+
+
+
+
+
+
+
