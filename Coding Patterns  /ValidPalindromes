@@ -1,0 +1,43 @@
+/**
+Two Pointers
+Java code that checks if a given string can be converted into a palindrome by removing at most two characters:
+
+*/
+
+public class ValidPalindrome {
+    
+    public static boolean validPalindrome(String s, int maxRemovals) {
+        return validPalindromeHelper(s, 0, s.length() - 1, maxRemovals);
+    }
+
+    private static boolean validPalindromeHelper(String s, int left, int right, int removalsLeft) {
+        // Base case: If we have removed more than allowed characters, return false
+        if (removalsLeft < 0) {
+            return false;
+        }
+        
+        // Two pointers: left and right
+        while (left < right) {
+            // If characters don't match
+            if (s.charAt(left) != s.charAt(right)) {
+                // Try removing one character from either side (left or right)
+                return validPalindromeHelper(s, left + 1, right, removalsLeft - 1) ||
+                       validPalindromeHelper(s, left, right - 1, removalsLeft - 1);
+            }
+            // Move inward
+            left++;
+            right--;
+        }
+        
+        // If we reached here, the string is already a palindrome or can be made one
+        return true;
+    }
+
+    public static void main(String[] args) {
+        String s1 = "abca";
+        String s2 = "abcdefdba";
+        
+        System.out.println(validPalindrome(s1, 2)); // true
+        System.out.println(validPalindrome(s2, 2)); // true
+    }
+}
